@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		基于Renpy的live2D及多周目实现 | 
 	 
 	Omoikane Library
 	</title>
@@ -151,7 +153,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/mokklo.top/2023/02/09/%E5%9F%BA%E4%BA%8ERenpy%E7%9A%84live2D%E5%8F%8A%E5%A4%9A%E5%91%A8%E7%9B%AE%E5%AE%9E%E7%8E%B0/">
                      
 										    基于Renpy的live2D及多周目实现
@@ -178,170 +180,154 @@
 
 	<!-- 引入正文 -->
 	<div id="content" class="content">
-		<div id="index">
-	
-		<div class="index-li">
-			<a href="/mokklo.top/2023/02/09/%E5%9F%BA%E4%BA%8ERenpy%E7%9A%84live2D%E5%8F%8A%E5%A4%9A%E5%91%A8%E7%9B%AE%E5%AE%9E%E7%8E%B0/">
-				<h2 class="index-title">
-					基于Renpy的live2D及多周目实现
-				</h2>
-				<div class="index-brief">
-					功能预览
-使用live2D式立绘(live2D素材请见live2D官网)
-每次进入游戏都能触发新的对话
+		<h1 id="article-title">
+	基于Renpy的live2D及多周目实现
+</h1>
 
+<!-- meta -->
+<div class="article-meta">
+	
+
+	<span>Shixi</span>
+	<span>2023-02-09 22:36:46</span>
+
+  <div id="article-categories">
+    
+		  <span>Categories：</span>
+      
+          
+              <span>
+                  <i class="fa fa-folder" aria-hidden="true">
+                  <a href="/categories/Python/">Python</a>
+                  </i>
+                
+              </span>
+          
+      
+    
+
+    
+		    <span>Tags：</span>
+        
+    
+  </div>
+
+</div>
+
+<!-- content -->
+<div id="article-content">
+	<h2 id="功能预览"><a href="#功能预览" class="headerlink" title="功能预览"></a>功能预览</h2><ul>
+<li>使用live2D式立绘(live2D素材请见<a target="_blank" rel="noopener" href="https://www.live2d.com/en/">live2D官网</a>)</li>
+<li>每次进入游戏都能触发新的对话</li>
+</ul>
 <iframe 
     src="https://streamja.com/embed/35KV7" 
     frameborder="0" 
     allowfullscreen>
+</iframe>
 
+<details>
+<summary>CODE</summary>
 
+<pre><code>define e = Character(&quot;Hiyori&quot;)
+image hiyori = Live2D(&quot;Resources/Hiyori&quot;, base=.6, loop=True)
+image hiyori close = Live2D(&quot;Resources/Hiyori&quot;, base=.6)
+image hiyori far = Live2D(&quot;Resources/Hiyori&quot;, base=.9)
+init:
+    $ persistent.cleared = 0
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2023-02-09</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/Python/">Python</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/mokklo.top/2022/02/05/ArcGIS%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81-97%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
-				<h2 class="index-title">
-					ArcGIS错误代码-97解决方法
-				</h2>
-				<div class="index-brief">
-					error code&#x3D;-97表明出现了许可错误，解决问题的关键在于修改service.txt文件。
+label start :
+    play music&#39;audio/daily2.mp3&#39;
+    scene bg room
+    show hiyori m05
 
+    if persistent.cleared == 0 :
+        jump A
+    elif persistent.cleared == 1:
+        jump B
+    else:
+        jump C
 
+label A :
+    e &quot;欢迎访问！我是Hiyori。&quot;
+    e &quot;这是一个粗糙的Live2D测试:D&quot;
+    e &quot;我可以连续播放多个动画。&quot;
+    e &quot;例如,这是动作1——&quot;
 
+    hide hiyori m05
+    show hiyori m08 m09
 
-在修改之前，你需要关闭正在运行的许可证服务。打开ArcGIS License Server Administrator，选择停止许可服务，同时在任务管理器中确保它已经关闭。如果无法停
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2022-02-05</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/ArcGIS/">ArcGIS</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/mokklo.top/2021/08/08/%E5%9F%BA%E4%BA%8Estata%E7%9A%84%E4%B8%BB%E6%88%90%E5%88%86%E5%88%86%E6%9E%90%E6%B3%95%EF%BC%88PCA%EF%BC%89%E5%AE%9E%E7%8E%B0/">
-				<h2 class="index-title">
-					基于stata的主成分分析法（PCA）实现
-				</h2>
-				<div class="index-brief">
-					1.数据来源与简介数据来自2021年华数杯数学建模比赛C题“电动汽车目标客户销售策略研究”。销售部门邀请了1964位目标客户对三款品牌电动汽车进行体验，并对8项满意度指标打分。这些客户均具有17项个体特征。
+    &quot;少女展示中......&quot;
+    e &quot;这是动作2——&quot;
 
-满意度指标: a&#x3D;(a1,…a8)
+    hide hiyori m08 m09
+    show hiyori m05
 
-个体特征: b&#x3D;(b1,…,b1
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-08-08</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/stata/">stata</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/mokklo.top/2021/06/04/Perform%20batch%20operations%20on%20specified%20variables%20in%20multiple%20files/">
-				<h2 class="index-title">
-					Perform batch operations on specified variables in multiple files
-				</h2>
-				<div class="index-brief">
-					Recently, several interesting data processing issues have been discovered when I try to use wind speed as IV.
-Meteorological data are mostly presented
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-06-04</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/Python/">Python</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/mokklo.top/2021/04/08/Create%20the%20personal%20blog%20based%20on%20Hexo/">
-				<h2 class="index-title">
-					Create the personal blog based on Hexo
-				</h2>
-				<div class="index-brief">
-					Step 1Download
-We will use Git and Node.js to deploy and manage your blog.
-Quick start
-Install hexonpm install hexo-cli -g
-hexo init blog
-cd blog
-npm 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-04-08</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/hexo/">hexo</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
-	</div>
+    e &quot;非常神奇吧~&quot;
+
+    hide hiyori m05
+    show hiyori m08 m09
+
+    if persistent.cleared == 0 :
+        $ persistent.cleared += 1
+
+    e &quot;少女演示中——&quot;
+
+    jump return_to_mm
+
+label B :
+    e &quot;又回来了呢！很高兴看到你~&quot;
+    e &quot;测试到这里就结束了，希望下次能实现更多新功能~&quot;
+    
+    if persistent.cleared == 1 :
+           $ persistent.cleared +=1
+    jump return_to_mm
+
+label C :
+    e&quot;虽然还是要说欢迎回来，不过别忘记你还有论文要改噢~&quot;
+    
+    if persistent.cleared == 2 :
+           $ persistent.cleared += 1
+    jump return_to_mm
+
+label return_to_mm :
+    pass
+</code></pre>
+</details>
+
+    
+
+<h2 id="参考教程"><a href="#参考教程" class="headerlink" title="参考教程"></a>参考教程</h2><p>多周目实现: <a target="_blank" rel="noopener" href="https://lemmasoft.renai.us/forums/viewtopic.php?t=5865%20">https://lemmasoft.renai.us/forums/viewtopic.php?t=5865%20</a></p>
+
 </div>
 
+<!-- post-guide -->
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/mokklo.top/2022/02/05/ArcGIS%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81-97%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">
+                ArcGIS错误代码-97解决方法
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+<!-- comment - giscus -->
+
+
+<!-- comment - valine -->
+
+
+<script>
+	
+	
+</script>
 	</div>
 	<div id="footer">
 	<p>
